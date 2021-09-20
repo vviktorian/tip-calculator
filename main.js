@@ -1,54 +1,62 @@
 window.addEventListener("DOMContentLoaded", function () {
-  var inputs = document.querySelectorAll("input");
-  var tipOptions = document.querySelectorAll(".tip-option");
   var billInput = document.querySelector(".billInput");
-  var tipInput = document.querySelector(".tip-input");
   var pplInput = document.querySelector(".pplInput");
-  var totalOutput = document.querySelector(".total-ready");
-  var tipOutput = document.querySelector(".tip-ready");
-  // var warning = document.querySelector('.warning');
+  var tipInput = document.querySelector(".tipInput");
+  var tipOptions = document.querySelectorAll(".tip-option");
 
-  let tip = 0;
-  tipOptions.forEach(function (option) {
-    option.addEventListener("click", function () {
-      var prcntVal = option.getAttribute("val");
-      tip = parseInt(prcntVal);
-      tipInput.value = 0;
+  var answer = "";
+  var totalResult = 0;
+  var tipResult = 0;
+  let x = 0;
+
+  function getValue(e, warnignType) {
+    value = e.value;
+    if (value != 0 && value > 0 && isNaN(value) == false) {
+      answer = parseInt(value);
+    } else {
+      answer = "Enter correct " + warnignType + " value";
+    }
+    return answer;
+  }
+
+  getValue(billInput, "bill");
+  var bill = answer;
+
+  getValue(pplInput, "people");
+  var ppl = answer;
+
+  function getTotal(a, b) {
+    totalResult = a / b;
+    if (totalResult != 0 && totalResult > 0 && isNaN(totalResult) == false) {
+      return totalResult;
+    }
+    else totalResult = 0;
+  }
+
+  function getTip() {
+    tipOptions.forEach(function (option) {
+      option.addEventListener("click", function () {
+        x = parseInt(option.getAttribute('val'));
+        return x;
+      });
     });
-  });
+    x = x
+    y = parseInt(tipInput.value);
+    if (y != 0 && y > 0 && isNaN(y) == false) {
+      tipResult = y;
+    } else if (x != 0 && x > 0 && isNaN(x) == false) {
+      tipResult = x;
+    }
+    return tipResult;
+  }
 
-  inputs.forEach(function (input) {
-    input.addEventListener("input", function () {
-      var bill = parseInt(billInput.value);
-      var customTip = parseInt(tipInput.value);
-      var ppl = parseInt(pplInput.value);
-      var total = bill / ppl;
-      var tipValue = bill * (tip / 100);
-      var customTipValue = bill * (customTip / 100);
-      var tipPPerson = parseFloat(tipValue / ppl);
-      var customTipPPerson = parseFloat(customTipValue / ppl);
+  getTotal(bill, ppl);
+  var total = totalResult.toFixed(2);
 
-      if (
-        ppl > 0 &&
-        isNaN(total) == false &&
-        total != 0 &&
-        bill != 0 &&
-        bill > 0
-      ) {
-        totalOutput.innerHTML = total.toFixed(2);
-      } else {
-        totalOutput.innerHTML = " ";
-      }
-
-      if (tip == 0 || tip < 0 || isNaN(tip) == true) {
-        tipOutput.innerHTML = customTipPPerson.toFixed(2);
-      }
-      else if(customTip == 0 || customTip < 0 || isNaN(customTip) == true){
-          tipOutput.innerHTML = tipPPerson.toFixed(2);
-      }
-      else{
-          tipOutput.innerHTML = " ";
-      }
-    });
-  });
+  console.log(bill);
+  console.log(ppl);
+  console.log(total);
+  getTip();
+  var theTip = tipResult;
+  console.log(theTip);
 });
