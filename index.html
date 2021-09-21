@@ -13,10 +13,12 @@
 <body>
 
   <main>
+    <form>
     <div class="calculator-box">
-      <div class="selection-column">
+      <div class="selection-column column">
         <div class="bill">
           <label>Bill</label>
+          <div class="warning bill-warn"></div>
           <input class="billInput" type="number" placeholder="0">
         </div>
         <div class="tip-section">
@@ -32,11 +34,12 @@
         </div>
         <div class="people">
           <label>People</label>
+          <div class="warning ppl-warn"></div>
           <div class="warning" style="display: none;">The value must be bigger than 0</div>
           <input class="pplInput" type="number" placeholder="0">
         </div>
       </div>
-      <div class="result-column">
+      <div class="result-column column">
         <div class="tip-amount">
           <div class="result-title">Tip Amount</div>
           <div class="result-person">/Person</div>
@@ -47,9 +50,10 @@
           <div class="result-person">/Person</div>
           <div class="amount total-ready"></div>
         </div>
-        <input type="reset" value="Reset">
+        <input class="reset" type="reset" value="Reset">
       </div>
     </div>
+  </form>
   </main>
   <script src="main.js"></script>
 </body>

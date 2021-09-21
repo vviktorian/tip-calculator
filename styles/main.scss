@@ -4,30 +4,37 @@
 body{
     margin: 0;
     padding: 0;
+    
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
+    
     input[type=number] {
         -moz-appearance: textfield;
     }
+
+    main{
+        height: 100vh;
+        padding: 100px;
+        box-sizing: border-box;
+        @include flex(center,center, default);
+    }
+
     .calculator-box{
-        @include flex(center,space-around,row);
-        .tip-option{
-            width: 50px;
-            height: 20px;
-            border: 1px solid black;
-            cursor: pointer;
-            margin: 10px 0px;
-            display: inline-block;
-        }
-        .amount{
-            width: 100px;
-            height: 20px;
-            border: 1px solid black;
-            cursor: pointer;
-            margin: 10px 0px;
+        @include flex(center,center,row);
+        border: 3px solid red;
+        width: 700px;
+        height: 366px;
+        .column{
+            width: 50%;
+            height: 100%;
+            border: 1px solid blue;
+            &.selection-column{
+                padding:35px;
+                box-sizing: border-box;
+            }
         }
     }
 }
